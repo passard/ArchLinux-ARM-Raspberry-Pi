@@ -1,7 +1,7 @@
 # Raspberry Pi 1, 2 and 3 installation from a Linux system (In this case, Arch Linux)
 
 ## 1) Micro SD Card Partition Table and File System Creation
-Open a terminal and **Type _'def -h'_** to identify your micro SD card. 
+Open a terminal and _type_ **'def -h'** to identify your micro SD card. 
 
 Replace sdX in the following instructions with the device name for the micro SD card as it appears on your computer.
 
@@ -9,30 +9,30 @@ Replace sdX in the following instructions with the device name for the micro SD 
 	fdisk /dev/sdX
 	
 ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
- **Type 'o'**. This will clear out any partitions on the drive.  
- **Type 'p'** to list partitions. There should be no partitions left.
+ _Type_ **'o'**. This will clear out any partitions on the drive.  
+ _Type_ **'p'** to list partitions. There should be no partitions left.
 
 ### 1.1 Boot partition
- **Type 'n'**, then **'p'** for primary, **'1'** (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then **type '+100M'** for the last sector.  
- *Type 't'*, then *'c'* to set the first partition to type W95 FAT32 (LBA).  
- *Type 'a'*, then *'1'* to toggle bootable flag on Boot partition. 
+ _Type_ **'n'**, then **'p'** for primary, **'1'** (Default) for the first partition on the drive, press **ENTER** to accept the default first sector, then _type_ **'+100M'** for the last sector.  
+ _Type_ **'t'**, then **'c'** to set the first partition to type W95 FAT32 (LBA).  
+ _Type_ **'a'**, then **'1'** to toggle bootable flag on Boot partition. 
 
 ### 1.2 Extended partition
- *Type 'n'*, then *'e'* for extended, *'2'* (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then *ENTER* for the last sector (Extended partition will take all the available space left).
+ _Type_ **'n'**, then **'e'** for extended, **'2'** (Default) for the first partition on the drive, press **ENTER** to accept the default first sector, then **ENTER** for the last sector (Extended partition will take all the available space left).
 
 ### 1.3 Root Partition
- *Type 'n'* : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
- Adding logical partition 5  
- Press *ENTER* to accept default first sector, then *'+49G'* (eg: this will create a 49gb partition) for root partition size.  
- *Type 't'*, partition number should be 5, press *ENTER*, then *'8e'* to set the first logical partition to type Linux LVM.
+ _Type_ **'n'** : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
+ Adding logical partition 5
+ Press **ENTER** to accept default first sector, then **'+49G'** (eg: this will create a 49gb partition) for root partition size.
+ _Type_ **'t'**, partition number should be 5, press **ENTER**, then **'8e'** to set the first logical partition to type Linux LVM.
  
 ### 1.4 Swap partition
- *Type 'n'* : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
+ _Type_ **'n'** : All space for primary partition is in use, so fdisk will automatically add a logical partition.  
  Adding logical partition 6  
- Press *ENTER* to accept default first sector, then ENTER again for default last sector.  
- *Type 't'*, partition number should be 6, press *ENTER*, then *'82'* to set the second logical partition to type Linux Swap.  
+ Press **ENTER** to accept default first sector, then **ENTER** again for default last sector.  
+ _Type_ **'t'**, partition number should be 6, press **ENTER**, then **'82'** to set the second logical partition to type Linux Swap.  
   
- *Type 'p'* to check how partition table is looking, if everything looks good, write the partition table and exit by typing *'w'*.
+ _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
 
 ### 1.5 Create and mount the FAT file system (-n is for label option):
 	mkfs.vfat /dev/sdX1 -n b00t
