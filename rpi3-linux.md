@@ -1,7 +1,7 @@
 # Raspberry Pi 3 Installation from a Linux system (In this case, Arch Linux)
 
 ## 1) Micro SD Card Partition Table and File System Creation
-  Open a terminal and *Type 'def -h'* to identify your micro SD card. 
+	Open a terminal and *Type 'def -h'* to identify your micro SD card. 
 
 Replace sdX in the following instructions with the device name for the micro SD card as it appears on your computer.
 
