@@ -1,7 +1,7 @@
 # Raspberry Pi 1, 2 and 3 installation from a Linux system (In this case, Arch Linux)
 
 ## 1) Micro SD Card Partition Table and File System Creation
-Open a terminal and *Type 'def -h'* to identify your micro SD card. 
+Open a terminal and **Type _'def -h'_** to identify your micro SD card. 
 
 Replace sdX in the following instructions with the device name for the micro SD card as it appears on your computer.
 
@@ -9,11 +9,11 @@ Replace sdX in the following instructions with the device name for the micro SD 
 	fdisk /dev/sdX
 	
 ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
- *Type 'o'*. This will clear out any partitions on the drive.  
- *Type 'p'* to list partitions. There should be no partitions left.
+ **Type 'o'**. This will clear out any partitions on the drive.  
+ **Type 'p'** to list partitions. There should be no partitions left.
 
 ### 1.1 Boot partition
- *Type 'n'*, then *'p'* for primary, *'1'* (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then *type '+100M'* for the last sector.  
+ **Type 'n'**, then **'p'** for primary, **'1'** (Default) for the first partition on the drive, press *ENTER* to accept the default first sector, then **type '+100M'** for the last sector.  
  *Type 't'*, then *'c'* to set the first partition to type W95 FAT32 (LBA).  
  *Type 'a'*, then *'1'* to toggle bootable flag on Boot partition. 
 
@@ -50,28 +50,28 @@ Replace sdX in the following instructions with the device name for the micro SD 
  	swapon /dev/sdX6
  	
 ### 1.8 Download with 'wget' and extract the appropriate root filesystem :
- For Raspberry Pi B+
+##### For Raspberry Pi B+
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz
- For Raspberry Pi 2
+##### For Raspberry Pi 2
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
- For Raspberry Pi 3
+##### For Raspberry Pi 3
 	wget http://archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
- To extract, run as root (not via sudo):
+##### To extract, run as root (not via sudo):
 	bsdtar -xpf ArchLinuxARM*.tar.gz -C /mnt/root && sync
- Move boot files to the first partition (still as root):
+##### Move boot files to the first partition (still as root):
 	mv /mnt/root/boot/* /mnt/boot
 
 ### 1.9 Unmount the two partitions:
 	umount /mnt/boot /mnt/root
 
 ### 2 Installation from the Pi
-Insert the SD card into the Raspberry Pi, connect ethernet, and apply at least 2.5A power.
+##### Insert the SD card into the Raspberry Pi, connect ethernet, and apply at least 2.5A power.
 
  Use the serial console or SSH to the IP address given to the board by
  your router.
 
- Login as the default user alarm with the password alarm.
- The default root password is root.
+ Login as the default user alarm with the password **alarm**.
+ The default root password is **root**.
 
 
 3) Update the system : pacman -Syyu
