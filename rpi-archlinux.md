@@ -1,4 +1,4 @@
-# Raspberry Pi 3 Installation from a Linux system (In this case, Arch Linux)
+# Raspberry Pi 1, 2 and 3 installation from a Linux system (In this case, Arch Linux)
 
 ## 1) Micro SD Card Partition Table and File System Creation
 	Open a terminal and *Type 'def -h'* to identify your micro SD card. 
@@ -49,14 +49,14 @@ Replace sdX in the following instructions with the device name for the micro SD 
  	mkswap /dev/sdX6 -L sw4p
  	swapon /dev/sdX6
  	
-### 1.8 Download and extract the appropriate root filesystem :
+### 1.8 Download with 'wget' and extract the appropriate root filesystem :
  For Raspberry Pi B+
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz
  For Raspberry Pi 2
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
  For Raspberry Pi 3
 	wget http://archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
- Run as root, not via sudo:
+ To extract, run as root (not via sudo):
 	bsdtar -xpf ArchLinuxARM*.tar.gz -C /mnt/root && sync
  Move boot files to the first partition (still as root):
 	mv /mnt/root/boot/* /mnt/boot
