@@ -5,7 +5,7 @@ Open a terminal and _type_ **'def -h'** to identify your micro SD card.
 
 Replace sdX in the following instructions with the device name for the micro SD card as it appears on your computer.
 
-##### Start fdisk (as root or with sudo) to partition the virtual drive:
+##### Start fdisk (as root or with sudo) to start partitioning :
 	fdisk /dev/sdX
 	
 ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
@@ -35,29 +35,29 @@ Replace sdX in the following instructions with the device name for the micro SD 
  _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
 
 ### 1.5 Create and mount the FAT file system (-n is for label option):
-	mkfs.vfat /dev/sdX1 -n b00t
+	mkfs.vfat /dev/sdX1 -n boot
  	mkdir /mnt/boot
  	mount /dev/sdX1 /mnt/boot
 
-### 1.6 Create and mount the ext4 file system (-L is for label option):
- 	mkfs.ext4 /dev/sdX5 -L r00t
+### 1.6 Create and mount the extfile system (-L is for label option):
+ 	mkfs.ext4 /dev/sdX5 -L root
 	mkdir /mnt/root
 	mount /dev/sdX5 /mnt/root
 
  
 ### 1.7 Create and mount Swap file system (-L is for label option):
- 	mkswap /dev/sdX6 -L sw4p
+ 	mkswap /dev/sdX6 -L swap
  	swapon /dev/sdX6
  	
 ### 1.8 Download with 'wget' and extract the appropriate root filesystem :
 ##### For Raspberry Pi B+
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz
-##### For Raspberry Pi 2
+##### For Raspberry Pi 2 & 3
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
-##### For Raspberry Pi 3
-	wget http://archlinuxarm.org/os/ArchLinuxARM-aarch64-latest.tar.gz
+
 ##### To extract, run as root (not via sudo):
 	bsdtar -xpf ArchLinuxARM*.tar.gz -C /mnt/root && sync
+
 ##### Move boot files to the first partition (still as root):
 	mv /mnt/root/boot/* /mnt/boot
 
@@ -65,7 +65,7 @@ Replace sdX in the following instructions with the device name for the micro SD 
 	umount /mnt/boot /mnt/root
 
 ### 2 Installation from the Pi
-##### Insert the SD card into the Raspberry Pi, connect ethernet, and apply at least 2.5A power.
+##### Insert the SD card into the Raspberry Pi, connect ethernet and power supply (at least 2.5A power for rpi3, 2A for rpi2).
 
  Use the serial console or SSH to the IP address given to the board by
  your router.
@@ -73,8 +73,9 @@ Replace sdX in the following instructions with the device name for the micro SD 
  Login as the default user alarm with the password **alarm**.
  The default root password is **root**.
 
+# ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
 
-3) Update the system : pacman -Syyu
+### 3 Update the system : pacman -Syyu
 
 4) pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver
 	optionnally : sh gcc make autoconf m4 python2 qt5 pygtk mono libva-mesa-driver python2-dbus networkmanager webkitgtk gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
