@@ -15,7 +15,7 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ### 1.1 Boot partition
  _Type_ **'n'**, then **'p'** for primary, **'1'** (Default) for the first partition on the drive, press **ENTER** to accept the default first sector, then _type_ **'+100M'** for the last sector.  
  _Type_ **'t'**, then **'c'** to set the first partition to type W95 FAT32 (LBA).  
- _Type_ **'a'**, then **'1'** to toggle bootable flag on Boot partition. 
+ _Type_ **'a'**, partition number should be **'1'**, press **ENTER** to toggle bootable flag on boot partition. 
 
 ### 1.2 Extended partition
  _Type_ **'n'**, then **'e'** for extended, **'2'** (Default) for the first partition on the drive, press **ENTER** to accept the default first sector, then **ENTER** for the last sector (Extended partition will take all the available space left).
