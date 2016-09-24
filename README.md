@@ -59,30 +59,33 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ### 1.9 Unmount the two partitions:
 	umount /mnt/boot /mnt/root
 
-### 2 Installation from the Pi
+## 2 Installation from the Pi
 ##### Insert the SD card into the Raspberry Pi, connect ethernet and power supply (at least 2.5A power for rpi3, 2A for rpi2).
 
- Use the serial console or SSH to the IP address given to the board by
+##### Use the serial console or SSH to the IP address given to the board by
  your router.
 
- Login as the default user alarm with the password **alarm**.
- The default root password is **root**.
+##### Login as the default user alarm with the password **alarm**. The default root password is **root**.
 
-# ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
+### 2.1 Update the system
+	pacman -Syyu
 
-### 3 Update the system : pacman -Syyu
-
-4) pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver
+### 2.2 Install desktop UI (xfce4) and basic tools
+	pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver
 	optionnally : sh gcc make autoconf m4 python2 qt5 pygtk mono libva-mesa-driver python2-dbus networkmanager webkitgtk gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
 
-5) Create a new user and enable sudo rights if necessary
+### 2.3 Create a new user and enable sudo rights if necessary
 	useradd -m -g users -G storage,power,wheel -s /bin/bash "username"
 	nano /etc/sudoers and uncomment the %wheel line
 	passwd "username" to define a password and su "username" to login as newly created user
 
-6) Configure Xfce
-	Create .xinitrc by typing nano ~/.xinitrc and "starxfce4" then save
-	Edit slim.conf default username and autologin yes for autologin.
+### 2.4 Configure Xfce
+##### Create .xinitrc by typing :
+**'nano ~/.xinitrc'** and _starxfce4_ then save (ctrl+o) and exit (ctrl+x)
+##### Edit /etc/slim.conf with your default username and set autologin to yes for autologin.
+
+
+## ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
 
 7) Reboot and login with "username"
 	if in tty, startxfce4
