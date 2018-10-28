@@ -86,33 +86,32 @@ Replace sdX in the following instructions with the device name for the micro SD 
 	nano ~/.xinitrc
 _Type_ **'starxfce4'** then save (ctrl+o) and exit (ctrl+x)
 
-### 2.5 Edit slim.conf
-_Type_ **'nano /etc/slim.conf'** then uncomment _default_user_ line and replace _simone_ with your default username
+### 2.5 Edit slim.conf (as root or with sudo)
+_Type_ **'sudo nano /etc/slim.conf'** then uncomment _default_user_ line and replace _simone_ with your default username
 If you want the session to start automatically, uncomment _autologin_ line and replace _no_ by **'yes'**.
 
 ## 3 Raspberry Pi configuration and tweaks
 ##### Reboot and login with _username_ credentials (if you did not chose autologin)
 If xfce4 desktop does not star, _type_ **'startxfce4'**
 
-## ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
-
 ### 2.6) Optimize Display
+Edit /boot/config.txt according to current display. I use the following for HD (1080px). More info on https://www.raspberrypi.org/documentation/configuration/config-txt/
 
-	edit /boot/config.txt according to current display
-	# Uncomment to force a specific HDMI mode (this will force VGA)
+##### As root or with sudo, _type_ 'sudo nano /boot/config.txt4
+Then uncomment following lines to force a specific HDMI mode (this will force VGA)
 	hdmi_group=2
 	hdmi_mode=82
 
-	# Uncomment to force a HDMI mode rather than DVI. This can make audio work in
-	# DMT (computer monitor) modes
+##### Uncomment to force a HDMI mode rather than DVI. This can make audio work in some cases.
 	hdmi_drive=1
 
- #   override the behaviour in config.txt if you understand the risks:
-	# Removes the warning overlay.
+##### Avoid warnings at boot for lower power supply (only if you understand the risks):
 	avoid_warnings=1
-
-	# Additionally allows turbo when low-voltage is present.
+### OR
+##### To avoid even more warnings and allow turbo when low-voltage is present.
 	avoid_warnings=2
+
+## ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
 
 8) Enable Bluetooth
 	Load generic drivers : modprobe btusb
