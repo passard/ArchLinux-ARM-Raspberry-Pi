@@ -1,6 +1,6 @@
 # Raspberry Pi 1, 2 and 3 installation from a Linux system (In this case, Arch Linux)
-#####Setup a Raspberry Pi 1, 2 and 3 (model B+) with Arch Linux, from scratch
-#####I use this as a memento any time I need to setup a new Raspberry Pi, or re-setup one that crashed "*_*"
+##### Setup a Raspberry Pi 1, 2 and 3 (model B and B+) with Arch Linux, from scratch
+##### All steps described below should be done in a terminal (command line interface), either from Mac OS or your favorite Linux distribution.
 
 ## 1) Micro SD Card Partition Table and File System Creation
 Open a terminal and _type_ **'def -h'** to identify your micro SD card. 
@@ -29,6 +29,8 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ### 1.4 Check partition table
  _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
 
+## Creating file system operations must be done as a root user
+
 ### 1.5 Create and mount the FAT file system (-n is for FAT label option):
 	mkfs.vfat /dev/sdX1 -n boot
  	mkdir /mnt/boot
@@ -38,7 +40,6 @@ Replace sdX in the following instructions with the device name for the micro SD 
  	mkfs.ext4 /dev/sdX2 -L root
 	mkdir /mnt/root
 	mount /dev/sdX2 /mnt/root
-
  
 ### 1.7 Create and mount Swap file system (-L is for label option):
  	mkswap /dev/sdX3 -L swap
@@ -70,25 +71,33 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ### 2.1 Update the system
 	pacman -Syyu
 
-### 2.2 Install desktop UI (xfce4) and basic tools
+### 2.2 Install desktop UI (xfce4) and basic tools (I use slim as greeter, it is easy and fast to set up)
 	pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver
-	optionnally : sh gcc make autoconf m4 python2 qt5 pygtk mono libva-mesa-driver python2-dbus networkmanager webkitgtk gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
+##### Optionnally, add some developer tools:
+	pacman -S ssh gcc make autoconf m4 python2 qt5 pygtk mono libva-mesa-driver python2-dbus networkmanager gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
 
-### 2.3 Create a new user and enable sudo rights if necessary
+### 2.3 Create a new user and enable sudo rights if necessary. Replace **'username'** by a name of your choice. 
 	useradd -m -g users -G storage,power,wheel -s /bin/bash "username"
-	nano /etc/sudoers and uncomment the %wheel line
+	nano /etc/sudoers and uncomment _%wheel_ line by removing the "#" sign
 	passwd "username" to define a password and su "username" to login as newly created user
 
 ### 2.4 Configure Xfce
 ##### Create .xinitrc by typing :
-**'nano ~/.xinitrc'** and _starxfce4_ then save (ctrl+o) and exit (ctrl+x)
-##### Edit /etc/slim.conf with your default username and set autologin to yes for autologin.
+	nano ~/.xinitrc
+_Type_ **'starxfce4'** then save (ctrl+o) and exit (ctrl+x)
 
+### 2.5 Edit slim.conf
+_Type_ **'nano /etc/slim.conf'** then uncomment _default_user_ line and replace _simone_ with your default username
+If you want the session to start automatically, uncomment _autologin_ line and replace _no_ by **'yes'**.
+
+## 3 Raspberry Pi configuration and tweaks
+##### Reboot and login with _username_ credentials (if you did not chose autologin)
+If xfce4 desktop does not star, _type_ **'startxfce4'**
 
 ## ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
 
-7) Reboot and login with "username"
-	if in tty, startxfce4
+### 2.6) Optimize Display
+
 	edit /boot/config.txt according to current display
 	# Uncomment to force a specific HDMI mode (this will force VGA)
 	hdmi_group=2
