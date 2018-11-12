@@ -3,7 +3,7 @@
 ##### All steps described below should be done in a terminal (command line interface), either from Mac OS or your favorite Linux distribution.
 
 ## 1) Micro SD Card Partition Table and File System Creation
-Open a terminal and _type_ **'def -h'** to identify your micro SD card. 
+Open a terminal and _type_ **'df -h'** to identify your micro SD card. 
 
 Replace sdX in the following instructions with the device name for the micro SD card as it appears on your computer.
 
