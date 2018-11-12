@@ -48,8 +48,10 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ### 1.8 Download with 'wget' and extract the appropriate root filesystem :
 ##### For Raspberry Pi B+
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-latest.tar.gz
-##### For Raspberry Pi 2 & 3
+##### For Raspberry Pi 2
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
+##### For Raspberry Pi 3
+	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz
 
 ##### To extract, run as root (not via sudo):
 	bsdtar -xpf ArchLinuxARM*.tar.gz -C /mnt/root && sync
