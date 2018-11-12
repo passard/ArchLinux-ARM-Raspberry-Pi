@@ -65,8 +65,8 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ## 2 Installation from the Pi
 ##### Insert the SD card into the Raspberry Pi, connect ethernet and power supply (at least 2.5A power for rpi3, 2A for rpi2).
 
-##### Use the serial console or SSH to the IP address given to the board by
- your router.
+##### Use the serial console or SSH to the IP address given to the board by your router.
+	If you don't know your fresh Raspberry Pi IP yet, you can use arp -a or netstat -r commands.
 
 ##### Login as the default user alarm with the password **alarm**. The default root password is **root**.
 
