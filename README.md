@@ -66,17 +66,19 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ##### Insert the SD card into the Raspberry Pi, connect ethernet and power supply (at least 2.5A power for rpi3, 2A for rpi2).
 
 ##### Use the serial console or SSH to the IP address given to the board by your router.
-	If you don't know your fresh Raspberry Pi IP yet, you can use arp -a or netstat -r commands.
+	If you don't know your fresh Raspberry Pi IP yet, you can use **'arp -a'** or **'netstat -r'** commands.
 
 ##### Login as the default user alarm with the password **alarm**. The default root password is **root**.
 
-### 2.1 Update the system
-	pacman -Syyu
+### 2.1 Update the system with pacman
+##### First update PGP signatures
+	**'pacman-key --init && acman-key --populate archlinuxarm'**
+	then _type_ **'pacman -Syyu'**
 
-### 2.2 Install desktop UI (xfce4) and basic tools (I use slim as greeter, it is easy and fast to set up)
-	pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver
+### 2.2 Install desktop UI (I use xfce4) and basic tools (I use slim as greeter, it is easy and fast to set up)
+	pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver networkmanager ffmpeg tinc
 ##### Optionnally, add some developer tools:
-	pacman -S ssh gcc make autoconf m4 python2 qt5 pygtk mono libva-mesa-driver python2-dbus networkmanager gvfs python-setuptools python-pip tinc pcmanfm ffmpeg
+	pacman -S openssh gcc make autoconf m4 python2 qt5 pygtk mono libva-mesa-driver python2-dbus gvfs python-setuptools python-pip pcmanfm
 
 ### 2.3 Create a new user and enable sudo rights if necessary. Replace **'username'** by a name of your choice. 
 	useradd -m -g users -G storage,power,wheel -s /bin/bash "username"
@@ -96,7 +98,7 @@ If you want the session to start automatically, uncomment _autologin_ line and r
 ##### Reboot and login with _username_ credentials (if you did not chose autologin)
 If xfce4 desktop does not star, _type_ **'startxfce4'**
 
-### 2.6) Optimize Display
+### 3.1 Optimize Display
 Edit /boot/config.txt according to current display. I use the following for HD (1080px). More info on https://www.raspberrypi.org/documentation/configuration/config-txt/
 
 ##### As root or with sudo, _type_ 'sudo nano /boot/config.txt4
@@ -115,12 +117,12 @@ Then uncomment following lines to force a specific HDMI mode (this will force VG
 
 ## ------------------------------- THE FOLLOWING HAS TO BE REVIEWED -----------------------------------
 
-8) Enable Bluetooth
+## 4 Enable Bluetooth
 	Load generic drivers : modprobe btusb
 	Enable service : systemctl enable bluetooth.service
 	Start service : systemctl start bluetooth.service
 
-9) Configure bluetooth device(s) :
+##### 4.1 Configure bluetooth device(s) :
 	9.1) Trackpad
 	# bluetoothctl
 	[bluetooth]# list
