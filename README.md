@@ -72,7 +72,7 @@ Replace sdX in the following instructions with the device name for the micro SD 
 
 ### 2.1 Update the system with pacman
 ##### First update PGP signatures
-	**'pacman-key --init && acman-key --populate archlinuxarm'**
+	pacman-key --init && pacman-key --populate archlinuxarm
 	then _type_ **'pacman -Syyu'**
 
 ### 2.2 Install desktop UI (I use xfce4) and basic tools (I use slim as greeter, it is easy and fast to set up)
