@@ -163,12 +163,10 @@ Further setup is require on rpi3.
 First, configure access to [AUR packages](https://wiki.archlinux.org/index.php/AUR_helpers)
 I used yaourt, pacaur or apacman in the past, feel free to chose your favorite, their setup is quite similar.
 
-I will use yay as an AUR helper:
-	git clone https://aur.archlinux.org/yay.git
-	cd yay
-	makepkg -si
+Now I will use yay as an AUR helper:
+	git clone https://aur.archlinux.org/yay.git && mv yay .yay && cd .yay && makepkg -si
 
-You can now use yay to install packages, yeah!
+You can now use yay to install packages!
 So let's install pi-bluetooth and hciattach-rpi3:
 	yay -S pi-bluetooth hciattach-rpi3
 	
