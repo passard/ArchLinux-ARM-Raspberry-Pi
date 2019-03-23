@@ -5,9 +5,9 @@
 ## 1) Micro SD Card Partition Table and File System Creation
 Open a terminal and _type_ **'df -h'** to identify your micro SD card. 
 
-### Replace sdX in the following instructions with the device identifier for the micro SD card as it appears on your computer (eg. sdb, sdc, sdd...).
+#### Replace sdX in the following instructions with the device identifier for the micro SD card as it appears on your computer (eg. sdb, sdc, sdd...).
 
-##### Start fdisk (as root or with sudo) to start partitioning :
+##### Start fdisk (__***as root or with sudo***__) to start partitioning :
 	fdisk /dev/sdX
 	
 ##### At the fdisk prompt, delete old partitions (if there is any) and create a new one:  
@@ -29,7 +29,7 @@ Open a terminal and _type_ **'df -h'** to identify your micro SD card.
 ### 1.4 Check partition table
  _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
 
-## Creating file system operations (__must be done as a root user__)
+## Creating file system operations (__***must be done as a root user***__)
 
 ### 1.5 Create and mount the FAT file system (-n is for FAT label option):
 	mkfs.vfat /dev/sdX1 -n boot
