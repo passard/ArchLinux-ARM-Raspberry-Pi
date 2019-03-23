@@ -5,7 +5,7 @@
 ## 1) Micro SD Card Partition Table and File System Creation
 Open a terminal and _type_ **'df -h'** to identify your micro SD card. 
 
-Replace sdX in the following instructions with the device name for the micro SD card as it appears on your computer.
+### Replace sdX in the following instructions with the device identifier for the micro SD card as it appears on your computer (eg. sdb, sdc, sdd...).
 
 ##### Start fdisk (as root or with sudo) to start partitioning :
 	fdisk /dev/sdX
@@ -29,7 +29,7 @@ Replace sdX in the following instructions with the device name for the micro SD 
 ### 1.4 Check partition table
  _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
 
-## Creating file system operations must be done as a root user
+## Creating file system operations (__must be done as a root user__)
 
 ### 1.5 Create and mount the FAT file system (-n is for FAT label option):
 	mkfs.vfat /dev/sdX1 -n boot
@@ -54,7 +54,7 @@ Replace sdX in the following instructions with the device name for the micro SD 
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz
 
 ##### To extract, run as root (not via sudo):
-	bsdtar -xpf ArchLinuxARM*.tar.gz -C /mnt/root && sync
+	bsdtar -xpf ArchLinuxARM-rpi*.tar.gz -C /mnt/root && sync
 
 ##### Move boot files to the first partition (still as root):
 	mv /mnt/root/boot/* /mnt/boot
