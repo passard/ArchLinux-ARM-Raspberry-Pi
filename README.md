@@ -1,11 +1,11 @@
-# Raspberry Pi 1, 2 and 3 installation from a Linux system (In this case, Arch Linux)
-##### Setup a Raspberry Pi 1, 2 and 3 (model B and B+) with Arch Linux, from scratch
+# Raspberry Pi installation from a Linux system (In this case, Arch Linux)
+##### Setup a Raspberry Pi (1, 2, 3 and 4, model B and B+) with Arch Linux, from scratch
 ##### All steps described below should be done in a terminal (command line interface), either from Mac OS or your favorite Linux distribution.
 
 ## 1) Micro SD Card Partition Table and File System Creation
-Open a terminal and _type_ **'df -h'** to identify your micro SD card. 
+Open a terminal and _type_ **'df -h'** to identify your micro SD card. Changed type of partition 'Linux' to 'W95 FAT32 (LBA)'.
 
-#### Replace sdX in the following instructions with the device identifier for the micro SD card as it appears on your computer (eg. sdb, sdc, sdd...).
+#### Replace sdX in the following instructions with the device identifier for the micro SD card as it appears on your computer (eg. sda, sdb, sdc, sdd...).
 
 ##### Start fdisk (__***as root or with sudo***__) to start partitioning :
 	fdisk /dev/sdX
@@ -16,10 +16,12 @@ Open a terminal and _type_ **'df -h'** to identify your micro SD card.
 
 ### 1.1 Boot partition
  _Type_ **'n'**, then **'p'** for primary, **'1'** (Default) for the first partition on the drive, press **ENTER** to accept the default first sector, then _type_ **'+100M'** for the last sector.  
- _Type_ **'t'**, press **ENTER**, then _type_ **'c'** to set the first partition as W95 FAT32 (LBA).  
+ _Type_ **'t'**, press **ENTER**, then _type_ **'c'** to set the first partition as W95 FAT32 (LBA).
+_Changed type of partition 'Linux' to 'W95 FAT32 (LBA)'._
  _Type_ **'a'**, default partition number should be **'1'**, press **ENTER** to toggle bootable flag on boot partition. 
+_The bootable flag on partition 1 is enabled now._
 
-### 1.2 Extended partition
+### 1.2 Root partition
  _Type_ **'n'**, then **'p'** for primary, **'2'** (Default) should be the next partition on the drive, press **ENTER** to accept the default first sector, then **'+49G'** (eg: this will create a 49gb partition) for root partition size.
  
 ### 1.3 Swap partition
@@ -52,6 +54,8 @@ Open a terminal and _type_ **'df -h'** to identify your micro SD card.
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-2-latest.tar.gz
 ##### For Raspberry Pi 3
 	wget http://archlinuxarm.org/os/ArchLinuxARM-rpi-3-latest.tar.gz
+##### For Raspberry Pi 4
+	wget http://os.archlinuxarm.org/os/ArchLinuxARM-rpi-4-latest.tar.gz
 
 ##### To extract, run as root (not via sudo):
 	bsdtar -xpf ArchLinuxARM-rpi*.tar.gz -C /mnt/root && sync
@@ -66,7 +70,7 @@ Open a terminal and _type_ **'df -h'** to identify your micro SD card.
 ##### Insert the SD card into the Raspberry Pi, connect ethernet and power supply (at least 2.5A power for rpi3, 2A for rpi2).
 
 ##### Use the serial console or SSH to the IP address given to the board by your router.
-If you don't know your IP yet, you can use **'arp -a'** or **'netstat -r'** commands.
+If you don't know your IP yet, you can use **'arp -a'** or **'netstat -r'** commands to retrieve devices connected to your network.
 
 ##### Login as the default user alarm with the password **alarm**. The default root password is **root**.
 
@@ -75,7 +79,7 @@ If you don't know your IP yet, you can use **'arp -a'** or **'netstat -r'** comm
 	pacman-key --init && pacman-key --populate archlinuxarm
 then _type_ **'pacman -Syyu'**
 
-### 2.2 Install desktop UI (I use xfce4) and basic tools (I use slim as greeter, it is easy and fast to set up)
+### 2.2 Install desktop UI (I use xfce4) and basic tools (I use slim as greeter, despite being discontinued, it is easy and fast to set up)
 	pacman -S xfce4 xfce4-goodies sudo xorg alsa-utils slim wget bluez bluez-utils blueman baobab wireless_tools mlocate binutils synapse firefox p7zip xarchiver networkmanager ffmpeg tinc
 ##### Optionnally, add some developer tools:
 	pacman -S base-devel openssh python2 qt5 pygtk mono libva-mesa-driver python2-dbus gvfs python-setuptools python-pip pcmanfm --needed
@@ -101,7 +105,7 @@ If xfce4 desktop does not start after a first reboot, _type_ **'startxfce4'** to
 ### 3.1 Optimize Display
 Edit /boot/config.txt according to current display. I use the following for HD (1080px). More info on [raspberrypi.org](https://www.raspberrypi.org/documentation/configuration/config-txt/)
 
-##### As root or with sudo, _type_ 'sudo nano /boot/config.txt4
+##### As root or with sudo, _type_ 'sudo nano /boot/config.txt'
 Then uncomment following lines to force a specific HDMI mode (for example, this will force VGA)
 	hdmi_group=2
 	hdmi_mode=82
