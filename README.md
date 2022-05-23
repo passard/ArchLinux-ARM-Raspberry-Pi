@@ -1,5 +1,5 @@
-# Raspberry Pi installation from a Linux system (In this case, Arch Linux)
-##### Setup a Raspberry Pi (1, 2, 3 and 4, model B and B+) with Arch Linux, from scratch.
+# ArchLinuxARM installation on Raspberry Pi (from an Arch Linux)
+##### Setup a Raspberry Pi with Arch Linux, from scratch - Support RPI 1, 2, 3, 3B+, 4, 4B, Zero 2 W
 ##### All steps described below should be done in a terminal (command line interface), either from Mac OS or your favorite Linux distribution.
 
 ## 1) Micro SD Card Partition Table and File System Creation
