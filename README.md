@@ -21,13 +21,13 @@ _Changed type of partition 'Linux' to 'W95 FAT32 (LBA)'._
  _Type_ **'a'**, default partition number should be **'1'**, press **ENTER** to toggle bootable flag on boot partition. 
 _The bootable flag on partition 1 is enabled now._
 
-### 1.2 Root partition
- _Type_ **'n'**, then **'p'** for primary, **'2'** (Default) should be the next partition on the drive, press **ENTER** to accept the default first sector, then **'+49G'** (eg: this will create a 49gb partition) for root partition size.
- 
-### 1.3 Swap partition
+### 1.2 Swap partition
  _Type_ **'n'** : then **'p'** for primary, **'3'** (Default) should be the next partition on the drive, press **ENTER** to accept default first sector, then **ENTER** again for default last sector (it will take all the available space left).  
  _Type_ **'t'**, default partition number should be **'3'**, press **ENTER**, then **'82'** to set the second logical partition to type Linux Swap.  
 
+### 1.3 Root partition
+ _Type_ **'n'**, then **'p'** for primary, **'2'** (Default) should be the next partition on the drive, press **ENTER** to accept the default first sector, then **'+49G'** (eg: this will create a 49gb partition) for root partition size.
+ 
 ### 1.4 Check partition table
  _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
 
@@ -37,15 +37,15 @@ _The bootable flag on partition 1 is enabled now._
 	mkfs.vfat /dev/sdX1 -n boot
  	mkdir /mnt/boot
  	mount /dev/sdX1 /mnt/boot
-
-### 1.6 Create and mount the extfile system (-L is for label option):
- 	mkfs.ext4 /dev/sdX2 -L root
-	mkdir /mnt/root
-	mount /dev/sdX2 /mnt/root
  
-### 1.7 Create and mount Swap file system (-L is for label option):
- 	mkswap /dev/sdX3 -L swap
- 	swapon /dev/sdX3
+### 1.6 Create and mount Swap file system (-L is for label option):
+ 	mkswap /dev/sdX2 -L swap
+ 	swapon /dev/sdX2
+
+### 1.7 Create and mount the extfile system (-L is for label option):
+ 	mkfs.ext4 /dev/sdX3 -L root
+	mkdir /mnt/root
+	mount /dev/sdX3 /mnt/root
  	
 ### 1.8 Download with 'wget' and extract the appropriate root filesystem :
 ##### For Raspberry Pi B+
