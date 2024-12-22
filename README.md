@@ -22,11 +22,11 @@ _Changed type of partition 'Linux' to 'W95 FAT32 (LBA)'._
 _The bootable flag on partition 1 is enabled now._
 
 ### 1.2 Swap partition
- _Type_ **'n'** : then **'p'** for primary, **'3'** (Default) should be the next partition on the drive, press **ENTER** to accept default first sector, then **ENTER** again for default last sector (it will take all the available space left).  
- _Type_ **'t'**, default partition number should be **'3'**, press **ENTER**, then **'82'** to set the second logical partition to type Linux Swap.  
+ _Type_ **'n'** : then **'p'** for primary, **'2'** (Default) should be the next partition on the drive, press **ENTER** to accept default first sector, then _type_ **'+512M'** for the last sector. (eg: this will create a 512MB swap partition, consider expanding the size up to 8GB for bigger memory).
+ _Type_ **'t'**, default partition number should be **'2'**, press **ENTER**, then **'82'** to set the second logical partition to type Linux Swap.  
 
 ### 1.3 Root partition
- _Type_ **'n'**, then **'p'** for primary, **'2'** (Default) should be the next partition on the drive, press **ENTER** to accept the default first sector, then **'+49G'** (eg: this will create a 49gb partition) for root partition size.
+ _Type_ **'n'**, then **'p'** for primary, **'2'** (Default) should be the next partition on the drive, press **ENTER** to accept the default first sector, then **ENTER** again for default last sector (it will take all the available space left for the root partition).
  
 ### 1.4 Check partition table
  _Type_ **'p'** to check how partition table is looking, if everything looks good, write the partition table and exit by typing **'w'**.
